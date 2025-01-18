@@ -38,7 +38,7 @@ exports.updateProduct = async (req, res) => {
             return res.status(404).json({ message: 'Producto no encontrado' });
         }
 
-        if (!updatedProduct.createdBy.toString() !== req.user.id) {
+        if (updatedProduct.createdBy.toString() !== req.user.id) {
             return res.status(403).json({ message: 'No tienes permisos para actualizar este producto' });
         }
 

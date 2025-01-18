@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('express');
 const connectDB = require('./config/database');
-const productRoutes = requiere('./routes/productRoutes');
+const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 // Inicializa una instancia de la aplicación Express que sevirá como servidor

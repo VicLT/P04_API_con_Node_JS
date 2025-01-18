@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Se importa el modelo de Usuario para interactuar con la base de datos.
-const user = require('../models/User');
+const User = require('../models/User');
 
 // Controlador de registro de usuarios
 exports.register = async (req, res) => {
@@ -24,7 +24,7 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Se crea un nuevo usuario con los datos proporcionados y la contraseña hasheada.
-        const newUser = new UserActivation({ name, email, password: hashedPassword });
+        const newUser = new User({ name, email, password: hashedPassword });
 
         // Se guarda el nuevo usuario en la base de datos.
         await newUser.save();
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
 
     try {
         // Se busca un usuario con el correo electrónico proporcionado.
-        const user = await UserActivation.findOne({ email });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado.' });
         }
